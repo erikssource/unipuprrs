@@ -1,0 +1,1 @@
+export const getCourseList = store => store && store.courses ? store.courses : [];
