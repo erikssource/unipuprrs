@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 import { Card, Heading, Tile } from "react-bulma-components/full";
 import { fetchCourses } from "../redux/actions";
 import store from "../redux/store";
@@ -9,7 +10,6 @@ export class CourseList extends Component {
     super(props);
   }
   componentDidMount() {
-    console.log("Calling Dispatch");
     store.dispatch(fetchCourses());
   }
   render() {
@@ -37,30 +37,8 @@ export class CourseList extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({courses: state.courses})
-)(CourseList)
+)(CourseList))
 
-/*
-const CourseList = ({ courses }) => (
-  <Tile kind="ancestor">
-  {courses && courses.length 
-    ? courses.map((course) => {
-      return (
-        <Tile key={`course-${course.id}`} size={3} renderAs="article">
-        <Card>
-          <Card.Image src={course.image}>
-          </Card.Image>
-          <Card.Content>
-            <Heading size={4}>{course.title}</Heading>
-            <span>{course.summary}</span>
-          </Card.Content>
-        </Card>
-        </Tile>
-      );
-    })
-    : "No Courses" }
-  </Tile>
-);
-*/
 
