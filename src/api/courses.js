@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { addCourse } from '../redux/actions';
 
 const FETCH_COURSES_ENDPT = "http://localhost:9555/api/v1/courses";
 const DELETE_COURSE_ENDPT = "http://localhost:9555/api/v1/courses/";
