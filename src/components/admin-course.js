@@ -1,20 +1,22 @@
 import React, {Component} from "react";
 import { Box, Media, Image, Button, Content, Level } from "react-bulma-components/full";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom"; 
 import { deleteCourse } from "../redux/actions";
-import store from "../redux/store";
 
-export class AdminCourse extends Component {
+class AdminCourse extends Component {
   constructor(props) {
     super(props);
+    console.log("PROPS: ", props);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleDelete() {
-    store.dispatch(deleteCourse(this.props.course.id))
+    this.props.dispatch(deleteCourse(this.props.course.id))
   }
 
   render() {
-    const { course } = this.props;
+    const course = this.props.course;
     return (
       <Box>
         <Media>
@@ -36,3 +38,7 @@ export class AdminCourse extends Component {
     );
   }
 }
+
+export default withRouter(connect(
+  state => ({})
+)(AdminCourse))
