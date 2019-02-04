@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom"; 
 import { fetchCourses, addCourse } from "../redux/actions";
-import store from "../redux/store";
-import {ToastContainer, ToastStore} from "react-toasts";
+
 import { Section, 
   Heading, 
   Button, 
@@ -17,9 +16,9 @@ import {
   Select,
   Textarea
 } from "react-bulma-components/lib/components/form"
-import { AdminCourse } from "./admin-course";
+import AdminCourse from "./admin-course";
 
-export class Admin extends Component {
+class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +33,7 @@ export class Admin extends Component {
   }
 
   componentDidMount() {
-    store.dispatch(fetchCourses());
+    this.props.dispatch(fetchCourses());
   }
 
   addCourse() {
@@ -44,7 +43,7 @@ export class Admin extends Component {
       description: this.state.description,
       image: this.state.image
     }
-    store.dispatch(addCourse(course));
+    this.props.dispatch(addCourse(course));
     this.setState(
       {
         title: "",
@@ -64,7 +63,7 @@ export class Admin extends Component {
   }
 
   render() {
-    const { courses } = this.props;
+    const courses = this.props.courses;
     let addButton;
 
     if (this.state.valid) {

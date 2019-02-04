@@ -3,17 +3,16 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 import { Card, Heading, Tile } from "react-bulma-components/full";
 import { fetchCourses } from "../redux/actions";
-import store from "../redux/store";
 
 export class CourseList extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    store.dispatch(fetchCourses());
+    this.props.dispatch(fetchCourses());
   }
   render() {
-    const { courses } = this.props;
+    const courses = this.props.courses;
     return (
       <Tile kind="ancestor">
       {courses && courses.length 

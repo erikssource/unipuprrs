@@ -7,7 +7,7 @@ const initialState = {
 export default function(state = initialState, action ) {
   switch( action.type ) {
     case ActionTypes.COURSES_LOADED:
-      return {...state, courses: action.courses };
+      return {...state, courses: action.data };
     default:
       return state;
   }

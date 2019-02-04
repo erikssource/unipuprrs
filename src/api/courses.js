@@ -10,25 +10,27 @@ const getCoursesCall = async function() {
 }
 
 const deleteCourseCall = async function(id) {
+  console.log("Delete Course: ", id);
   const resp = await axios.delete(DELETE_COURSE_ENDPT + id);
   return resp.status;
 }
 
 const addCourseCall = async function(course) {
+  console.log("Add Course: ", course);
   const resp = await axios.post(ADD_COURSE_ENDPT, course);
   return resp.status;
 }
 
 export default {
-  async fetchCourses() {
+  async fetchCourses(data = null) {
     return await getCoursesCall();
   },
 
-  async deleteCourse(id) {
-    await deleteCourseCall(id);
+  async deleteCourse(data) {
+    await deleteCourseCall(data.id);
   },
 
-  async addCourse(course) {
-    await addCourseCall(course);
+  async addCourse(data) {
+    await addCourseCall(data.course);
   }
 }

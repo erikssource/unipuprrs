@@ -3,7 +3,7 @@ import ActionTypes from './actionTypes';
 export function addCourse(payload) { 
   return {
     type: ActionTypes.ADD_COURSE,
-    payload: {
+    course: {
       id: null,
       title: payload.title,
       summary: payload.summary,
